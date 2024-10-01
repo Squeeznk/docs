@@ -50,7 +50,27 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Приступая к работе",
+      "pages": [
+        "documentation/getstarted/index",
+        "introduction",
+        "quickstart",
+        "development",
+        "getting-started"
+      ]
+    },
+    {
+      "group": "Руководство пользователя",
+      "pages": [
+        "documentation/getstarted/index",
+        "introduction",
+        "quickstart",
+        "development",
+        "getting-started"
+      ]
+    },
+    {
+      "group": "Руководство администратора",
       "pages": [
         "documentation/getstarted/index",
         "introduction",
