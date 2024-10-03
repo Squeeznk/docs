@@ -70,6 +70,15 @@
             "documentation/getstarted/gantt-charts",
             "documentation/getstarted/user-profile"
           ]
+        },
+        {
+          "group": "Примеры",
+          "pages": [
+            "README",
+            "development",
+            "introduction",
+            "quickstart"
+          ]
         }
       ]
     },
