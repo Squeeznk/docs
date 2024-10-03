@@ -52,22 +52,20 @@
     {
       "group": "Приступая к работе",
       "pages": [
+        "documentation/getstarted/register-and-signin",
         {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-        "documentation/getstarted/index",
-        "introduction",
-        "quickstart",
-        "development",
-        "getting-started"
+          "group": "Проекты",
+          "pages": [
+            "documentation/getstarted/projects/kanban-template",
+            "documentation/getstarted/projects/scrum-template",
+            "documentation/getstarted/projects/waterfall-template"
+          ]
+        },
+        "documentation/getstarted/project-members",
+        "documentation/getstarted/tasks",
+        "documentation/getstarted/tasks-boards",
+        "documentation/getstarted/gantt-charts",
+        "documentation/getstarted/user-profile"
       ]
     },
     {
