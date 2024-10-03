@@ -50,22 +50,27 @@
   ],
   "navigation": [
     {
-      "group": "Приступая к работе",
+      "group": "Документация",
       "pages": [
-        "documentation/getstarted/register-and-signin",
         {
-          "group": "Проекты",
+          "group": "Приступая к работе",
           "pages": [
-            "documentation/getstarted/projects/kanban-template",
-            "documentation/getstarted/projects/scrum-template",
-            "documentation/getstarted/projects/waterfall-template"
+            "documentation/getstarted/register-and-signin",
+            {
+              "group": "Проекты",
+              "pages": [
+                "documentation/getstarted/projects/kanban-template",
+                "documentation/getstarted/projects/scrum-template",
+                "documentation/getstarted/projects/waterfall-template"
+              ]
+            },
+            "documentation/getstarted/project-members",
+            "documentation/getstarted/tasks",
+            "documentation/getstarted/tasks-boards",
+            "documentation/getstarted/gantt-charts",
+            "documentation/getstarted/user-profile"
           ]
-        },
-        "documentation/getstarted/project-members",
-        "documentation/getstarted/tasks",
-        "documentation/getstarted/tasks-boards",
-        "documentation/getstarted/gantt-charts",
-        "documentation/getstarted/user-profile"
+        }
       ]
     },
     {
