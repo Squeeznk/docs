@@ -60,26 +60,6 @@
       ]
     },
     {
-      "group": "Руководство пользователя",
-      "pages": [
-        "documentation/getstarted/index",
-        "introduction",
-        "quickstart",
-        "development",
-        "getting-started"
-      ]
-    },
-    {
-      "group": "Руководство администратора",
-      "pages": [
-        "documentation/getstarted/index",
-        "introduction",
-        "quickstart",
-        "development",
-        "getting-started"
-      ]
-    },
-    {
       "group": "Essentials",
       "pages": [
         "essentials/markdown",
