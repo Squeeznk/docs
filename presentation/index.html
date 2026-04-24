@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=1280">
-  <title>Automacon WCS — Enterprise-платформа управления складской роботизацией</title>
+  <title>Automacon WCS — Итоги квартала</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -17,7 +16,6 @@
     :root {
       --wcs-bg-0: #07110d;
       --wcs-bg-1: #0b1a14;
-      --wcs-bg-2: #0f2419;
       --wcs-green: #0D9373;
       --wcs-green-bright: #07C983;
       --wcs-green-soft: #5ce0b0;
@@ -32,17 +30,12 @@
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
       font-weight: 400;
       color: var(--wcs-text);
-      font-size: 30px;
+      font-size: 28px;
       letter-spacing: 0.005em;
     }
 
-    .reveal .slides {
-      text-align: left;
-    }
-
-    .reveal .slides section {
-      padding: 30px 40px;
-    }
+    .reveal .slides { text-align: left; }
+    .reveal .slides section { padding: 30px 40px; }
 
     .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
       font-family: 'Inter', sans-serif;
@@ -53,20 +46,16 @@
       line-height: 1.15;
       margin: 0 0 0.4em 0;
     }
-
     .reveal h1 { font-size: 2.6em; }
-    .reveal h2 { font-size: 1.9em; }
-    .reveal h3 { font-size: 1.35em; color: var(--wcs-green-soft); font-weight: 600; }
-    .reveal h4 { font-size: 1.05em; color: var(--wcs-green-bright); font-weight: 600; }
+    .reveal h2 { font-size: 1.85em; }
+    .reveal h3 { font-size: 1.3em; color: var(--wcs-green-soft); font-weight: 600; }
+    .reveal h4 { font-size: 1.0em; color: var(--wcs-green-bright); font-weight: 600; }
 
     .reveal p { line-height: 1.45; }
-
     .reveal .accent { color: var(--wcs-green-bright); font-weight: 600; }
     .reveal .muted { color: var(--wcs-muted); }
     .reveal code, .reveal pre { font-family: 'JetBrains Mono', monospace; }
-    .reveal a { color: var(--wcs-green-bright); }
 
-    /* Global slide background gradient */
     .reveal .slides section.present,
     .reveal .slides section {
       background: radial-gradient(1200px 700px at 85% -10%, rgba(13, 147, 115, 0.18), transparent 55%),
@@ -74,455 +63,398 @@
                   linear-gradient(180deg, #07110d 0%, #0b1a14 100%);
     }
 
-    /* Top brand bar on every slide */
+    /* Brand bar / footer */
     .brand-bar {
       position: absolute;
-      top: 22px;
-      left: 40px;
-      right: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      color: var(--wcs-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
+      top: 22px; left: 40px; right: 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: var(--wcs-muted);
+      letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
       pointer-events: none;
     }
-    .brand-bar .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-    }
+    .brand-bar .logo { display: flex; align-items: center; gap: 10px; color: #fff; }
     .brand-bar .logo .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
+      width: 10px; height: 10px; border-radius: 50%;
       background: var(--wcs-green-bright);
       box-shadow: 0 0 12px var(--wcs-green-bright);
     }
     .brand-bar .logo span { letter-spacing: 0.14em; font-weight: 600; }
     .brand-bar .section-tag {
-      padding: 4px 12px;
-      border: 1px solid var(--wcs-border);
-      border-radius: 999px;
-      color: var(--wcs-green-soft);
+      padding: 4px 12px; border: 1px solid var(--wcs-border);
+      border-radius: 999px; color: var(--wcs-green-soft);
       background: rgba(7, 201, 131, 0.06);
     }
-
     .slide-footer {
       position: absolute;
-      bottom: 18px;
-      left: 40px;
-      right: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      color: var(--wcs-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      bottom: 18px; left: 40px; right: 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: var(--wcs-muted);
+      letter-spacing: 0.08em; text-transform: uppercase;
       pointer-events: none;
     }
 
-    /* Title slide */
+    /* Title */
     .title-slide { text-align: center !important; }
     .title-slide .eyebrow {
-      display: inline-block;
-      font-size: 15px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--wcs-green-bright);
-      padding: 6px 18px;
-      border: 1px solid var(--wcs-border);
-      border-radius: 999px;
-      margin-bottom: 30px;
+      display: inline-block; font-size: 14px; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--wcs-green-bright);
+      padding: 6px 18px; border: 1px solid var(--wcs-border);
+      border-radius: 999px; margin-bottom: 28px;
       background: rgba(7, 201, 131, 0.05);
     }
     .title-slide h1 {
       font-size: 4em;
       background: linear-gradient(135deg, #ffffff 0%, var(--wcs-green-soft) 45%, var(--wcs-green-bright) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
       margin-bottom: 0.1em;
     }
     .title-slide .subtitle {
-      font-size: 1.4em;
-      color: var(--wcs-muted);
-      font-weight: 300;
-      margin-top: 10px;
+      font-size: 1.4em; color: var(--wcs-muted); font-weight: 300; margin-top: 10px;
     }
     .title-slide .meta {
-      margin-top: 60px;
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-      font-size: 14px;
-      color: var(--wcs-muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      margin-top: 50px; display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
+      font-size: 13px; color: var(--wcs-muted);
+      letter-spacing: 0.18em; text-transform: uppercase;
     }
     .title-slide .meta span::before {
-      content: "";
-      display: inline-block;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--wcs-green-bright);
-      margin-right: 10px;
-      vertical-align: middle;
+      content: ""; display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--wcs-green-bright);
+      margin-right: 10px; vertical-align: middle;
     }
 
-    /* Grid of capability cards */
-    .cards {
-      display: grid;
-      gap: 18px;
-      margin-top: 18px;
+    /* Section title */
+    .section-title {
+      display: inline-flex; align-items: center; gap: 14px;
+      color: var(--wcs-green-bright); font-size: 0.7em;
+      text-transform: uppercase; letter-spacing: 0.22em;
+      margin-bottom: 14px; font-weight: 600;
     }
+    .section-title::before {
+      content: ""; display: inline-block;
+      width: 28px; height: 2px; background: var(--wcs-green-bright);
+    }
+
+    /* Cards */
+    .cards { display: grid; gap: 16px; margin-top: 16px; }
     .cards.cols-2 { grid-template-columns: 1fr 1fr; }
     .cards.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
     .cards.cols-4 { grid-template-columns: repeat(4, 1fr); }
-
     .card {
       background: linear-gradient(180deg, rgba(13, 147, 115, 0.08) 0%, rgba(13, 147, 115, 0.02) 100%);
       border: 1px solid var(--wcs-border);
-      border-radius: 14px;
-      padding: 18px 20px;
-      position: relative;
-      overflow: hidden;
+      border-radius: 14px; padding: 16px 18px; position: relative; overflow: hidden;
     }
     .card::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 2px;
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
       background: linear-gradient(90deg, var(--wcs-green), var(--wcs-green-bright));
       opacity: 0.85;
     }
     .card h4 {
-      margin: 0 0 8px 0;
-      font-size: 1em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      margin: 0 0 8px 0; font-size: 0.95em;
+      display: flex; align-items: center; gap: 10px;
     }
     .card .icon {
-      display: inline-flex;
-      width: 28px; height: 28px;
-      border-radius: 8px;
-      background: rgba(7, 201, 131, 0.14);
+      display: inline-flex; width: 28px; height: 28px;
+      border-radius: 8px; background: rgba(7, 201, 131, 0.14);
       color: var(--wcs-green-bright);
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 15px;
-      flex-shrink: 0;
+      align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; flex-shrink: 0;
     }
-    .card p {
-      margin: 0;
-      font-size: 0.78em;
-      color: #c9dcd2;
-      line-height: 1.5;
-    }
-    .card ul {
-      margin: 0;
-      padding-left: 18px;
-      font-size: 0.78em;
-      color: #c9dcd2;
-      line-height: 1.5;
-    }
+    .card p { margin: 0; font-size: 0.75em; color: #c9dcd2; line-height: 1.5; }
+    .card ul { margin: 0; padding-left: 18px; font-size: 0.75em; color: #c9dcd2; line-height: 1.5; }
 
-    /* Pill list */
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
+    /* Pills */
+    .pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      font-size: 0.72em;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px; font-size: 0.7em;
       border: 1px solid var(--wcs-border);
-      border-radius: 999px;
-      color: var(--wcs-green-soft);
+      border-radius: 999px; color: var(--wcs-green-soft);
       background: rgba(7, 201, 131, 0.05);
     }
     .pill.solid {
       background: linear-gradient(135deg, var(--wcs-green), var(--wcs-green-bright));
-      color: #051a12;
-      border: none;
-      font-weight: 600;
+      color: #051a12; border: none; font-weight: 600;
+    }
+    .pill.warn {
+      color: #ffd478; background: rgba(255, 196, 99, 0.08);
+      border-color: rgba(255, 196, 99, 0.25);
     }
 
-    /* Section divider slide */
-    .section-slide {
-      display: flex !important;
-      flex-direction: column;
-      justify-content: center;
-      height: 100%;
-    }
-    .section-slide .section-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11em;
-      line-height: 0.9;
-      color: transparent;
-      -webkit-text-stroke: 2px rgba(7, 201, 131, 0.35);
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      margin-bottom: 10px;
-    }
-    .section-slide h2 {
-      font-size: 3em;
-      margin: 0 0 16px 0;
-    }
-    .section-slide p {
-      font-size: 1.1em;
-      color: var(--wcs-muted);
-      max-width: 900px;
-      line-height: 1.5;
-    }
-
-    /* Two-column layout */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-top: 12px;
-    }
+    /* Two-col */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 12px; }
     .two-col.ratio-40-60 { grid-template-columns: 4fr 6fr; }
     .two-col.ratio-60-40 { grid-template-columns: 6fr 4fr; }
+    .two-col.ratio-55-45 { grid-template-columns: 55fr 45fr; }
 
-    /* Stats / highlight numbers */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 20px;
-    }
+    /* Stats */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 18px; }
     .stat {
-      border: 1px solid var(--wcs-border);
-      border-radius: 14px;
-      padding: 18px;
-      background: rgba(7, 201, 131, 0.04);
+      border: 1px solid var(--wcs-border); border-radius: 14px;
+      padding: 16px 18px; background: rgba(7, 201, 131, 0.04);
     }
     .stat .num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2.2em;
-      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace; font-size: 2.0em; font-weight: 700;
       background: linear-gradient(135deg, #fff, var(--wcs-green-bright));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
       line-height: 1;
     }
     .stat .label {
-      font-size: 0.68em;
-      color: var(--wcs-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-top: 8px;
-    }
-
-    /* Summary check table */
-    .summary-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-      font-size: 0.78em;
-    }
-    .summary-table th, .summary-table td {
-      text-align: left;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--wcs-border);
-    }
-    .summary-table th {
-      color: var(--wcs-muted);
-      font-weight: 500;
-      font-size: 0.85em;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .summary-table tr td:last-child {
-      text-align: right;
-      color: var(--wcs-green-bright);
-      font-weight: 600;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .summary-table tbody tr:hover { background: rgba(7, 201, 131, 0.05); }
-
-    /* Stack diagram */
-    .stack {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-    .stack-item {
-      border: 1px solid var(--wcs-border);
-      border-left: 4px solid var(--wcs-green-bright);
-      border-radius: 10px;
-      padding: 12px 18px;
-      background: rgba(13, 147, 115, 0.06);
-    }
-    .stack-item .kind {
-      font-size: 0.7em;
-      color: var(--wcs-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-    .stack-item .value {
-      font-size: 1.05em;
-      color: #fff;
-      font-weight: 600;
-      margin-top: 4px;
+      font-size: 0.65em; color: var(--wcs-muted);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-top: 8px;
     }
 
     /* Check list */
-    .check-list {
-      list-style: none;
-      padding: 0;
-      margin: 10px 0 0 0;
-    }
+    .check-list { list-style: none; padding: 0; margin: 10px 0 0 0; }
     .check-list li {
-      padding: 9px 0 9px 30px;
-      position: relative;
+      padding: 8px 0 8px 28px; position: relative;
       border-bottom: 1px solid rgba(92, 224, 176, 0.08);
-      font-size: 0.85em;
-      color: #d6ebe1;
+      font-size: 0.82em; color: #d6ebe1;
     }
     .check-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      color: var(--wcs-green-bright);
-      font-weight: 700;
+      content: "✓"; position: absolute; left: 0; top: 7px;
+      color: var(--wcs-green-bright); font-weight: 700;
     }
     .check-list li:last-child { border-bottom: none; }
 
-    /* Callout big text */
-    .big-quote {
-      font-size: 1.6em;
-      font-weight: 300;
-      line-height: 1.3;
-      color: #fff;
-      max-width: 1000px;
+    /* Stack diagram */
+    .stack { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 14px; }
+    .stack-item {
+      border: 1px solid var(--wcs-border); border-left: 4px solid var(--wcs-green-bright);
+      border-radius: 10px; padding: 10px 16px; background: rgba(13, 147, 115, 0.06);
     }
-    .big-quote .accent { color: var(--wcs-green-bright); font-weight: 600; }
+    .stack-item .kind {
+      font-size: 0.65em; color: var(--wcs-muted);
+      text-transform: uppercase; letter-spacing: 0.14em;
+    }
+    .stack-item .value { font-size: 1em; color: #fff; font-weight: 600; margin-top: 4px; }
 
-    /* Fine section title */
-    .section-title {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      color: var(--wcs-green-bright);
-      font-size: 0.75em;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      margin-bottom: 14px;
-      font-weight: 600;
+    /* Achievement big banner */
+    .achievement {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px 22px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(7, 201, 131, 0.18), rgba(13, 147, 115, 0.08));
+      border: 1px solid var(--wcs-border);
+      margin-top: 14px;
     }
-    .section-title::before {
-      content: "";
-      display: inline-block;
-      width: 28px; height: 2px;
-      background: var(--wcs-green-bright);
+    .achievement .badge {
+      flex-shrink: 0; width: 56px; height: 56px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--wcs-green), var(--wcs-green-bright));
+      color: #051a12; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 800;
     }
+    .achievement .body { flex: 1; }
+    .achievement h4 { margin: 0 0 6px 0; font-size: 1.05em; color: #fff; }
+    .achievement p { margin: 0; font-size: 0.78em; color: #c9dcd2; line-height: 1.55; }
 
-    /* Kbd-like tag */
-    .tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: rgba(7, 201, 131, 0.12);
-      color: var(--wcs-green-bright);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72em;
-      margin: 0 3px;
+    /* Quarter overview grid (intro slide) */
+    .qgrid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-top: 18px;
     }
-
-    /* Timeline for history slide */
-    .timeline {
+    .qcard {
+      border: 1px solid var(--wcs-border); border-radius: 14px;
+      padding: 14px 16px; background: rgba(7, 201, 131, 0.04);
       position: relative;
-      margin: 30px 0 10px 0;
-      padding: 20px 0;
     }
+    .qcard .num {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7em;
+      color: var(--wcs-green-bright); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .qcard h4 { margin: 0 0 6px 0; font-size: 0.95em; color: #fff; font-weight: 600; }
+    .qcard p { margin: 0; font-size: 0.7em; color: var(--wcs-muted); line-height: 1.4; }
+
+    /* AI chat mockup */
+    .chat-mock {
+      width: 100%; max-width: 380px;
+      background: #ffffff; color: #1a1f2c;
+      border-radius: 18px; padding: 0;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.06);
+      font-size: 13px; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .chat-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid #eef0f3; background: #fff;
+    }
+    .chat-head .who { display: flex; align-items: center; gap: 10px; }
+    .chat-head .avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #18203a; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700;
+    }
+    .chat-head .name { font-weight: 700; color: #0a1024; font-size: 14px; line-height: 1; }
+    .chat-head .sub { color: #8a93a3; font-size: 11px; margin-top: 3px; letter-spacing: 0.04em; }
+    .chat-head .actions { color: #b7bdc9; font-size: 16px; letter-spacing: 8px; }
+    .chat-body {
+      padding: 14px 14px; display: flex; flex-direction: column; gap: 12px;
+      max-height: 400px; overflow: hidden;
+    }
+    .bubble {
+      padding: 10px 14px; border-radius: 14px;
+      font-size: 12.5px; line-height: 1.45;
+      max-width: 88%;
+    }
+    .bubble.user {
+      align-self: flex-end;
+      background: #0a1024; color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+    .bubble.bot {
+      align-self: flex-start;
+      background: #f3f5f8; color: #0a1024;
+      border-bottom-left-radius: 4px;
+    }
+    .bubble.bot strong { color: #0a1024; }
+    .bubble.bot em { color: #5b6275; font-style: italic; }
+    .bubble .meta-line {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10.5px; color: #6c7488;
+      background: #f0f2f5; padding: 4px 10px; border-radius: 999px;
+      margin-top: 4px;
+    }
+    .chat-input {
+      padding: 10px 12px 6px 12px;
+      border-top: 1px solid #eef0f3;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .chat-input .field {
+      flex: 1; padding: 9px 14px; border-radius: 999px;
+      border: 1px solid #d8dde6; color: #b6bcc9; font-size: 12px;
+    }
+    .chat-input .send {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #b7bdc9; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
+    .chat-hint {
+      font-size: 10px; color: #9aa1b1;
+      padding: 0 14px 10px 14px;
+    }
+
+    /* Workflow node mock */
+    .workflow {
+      border: 1px solid var(--wcs-border); border-radius: 14px;
+      background: rgba(7, 201, 131, 0.03);
+      padding: 16px; margin-top: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; flex-wrap: nowrap;
+    }
+    .wf-node {
+      flex: 1; min-width: 0; padding: 10px 12px;
+      border-radius: 10px; border: 1px solid var(--wcs-border);
+      background: rgba(13, 147, 115, 0.1);
+      text-align: center; font-size: 0.7em;
+      color: #fff;
+    }
+    .wf-node.custom {
+      border: 1px dashed var(--wcs-green-bright);
+      background: rgba(7, 201, 131, 0.18);
+      color: #fff;
+    }
+    .wf-node small {
+      display: block; color: var(--wcs-muted);
+      font-size: 0.85em; margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .wf-arrow {
+      color: var(--wcs-green-bright); font-size: 1.2em;
+      flex-shrink: 0;
+    }
+
+    /* Telemetry timeline */
+    .timeline { position: relative; margin: 22px 0 6px 0; padding: 18px 0; }
     .timeline-track {
-      height: 4px;
-      border-radius: 2px;
+      height: 4px; border-radius: 2px;
       background: linear-gradient(90deg, var(--wcs-green), var(--wcs-green-bright));
       position: relative;
     }
+    .timeline-cursor {
+      position: absolute; top: -10px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #fff; border: 4px solid var(--wcs-green-bright);
+      box-shadow: 0 0 0 6px rgba(7, 201, 131, 0.18);
+    }
     .timeline-marks {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 14px;
+      display: flex; justify-content: space-between; margin-top: 14px;
     }
-    .timeline-mark {
-      text-align: center;
-      font-size: 0.72em;
-      color: var(--wcs-muted);
-      position: relative;
-    }
+    .timeline-mark { text-align: center; font-size: 0.65em; color: var(--wcs-muted); position: relative; }
     .timeline-mark::before {
-      content: "";
-      display: block;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--wcs-green-bright);
+      content: ""; display: block; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--wcs-green-bright);
       margin: -22px auto 8px auto;
       box-shadow: 0 0 0 4px rgba(7, 201, 131, 0.12);
     }
     .timeline-controls {
-      display: inline-flex;
-      gap: 10px;
-      margin-top: 18px;
+      display: inline-flex; gap: 10px; margin-top: 14px;
       color: var(--wcs-green-soft);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8em;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75em;
     }
     .timeline-controls span {
-      padding: 6px 12px;
-      border: 1px solid var(--wcs-border);
-      border-radius: 8px;
+      padding: 5px 10px; border: 1px solid var(--wcs-border); border-radius: 8px;
     }
 
-    /* Final slide */
+    /* Robot model mock */
+    .robot-3d {
+      border: 1px solid var(--wcs-border); border-radius: 14px;
+      padding: 18px; background: rgba(7, 201, 131, 0.04);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 220px; position: relative;
+    }
+    .robot-svg { width: 220px; height: auto; }
+
+    /* LIF map editor mock */
+    .map-editor {
+      border: 1px solid var(--wcs-border); border-radius: 14px;
+      background: linear-gradient(180deg, rgba(11, 26, 20, 0.9), rgba(7, 17, 13, 0.9));
+      padding: 14px; margin-top: 12px; display: flex; gap: 12px;
+    }
+    .map-tools {
+      display: flex; flex-direction: column; gap: 8px;
+      width: 110px; flex-shrink: 0;
+    }
+    .map-tool {
+      padding: 6px 8px; border: 1px solid var(--wcs-border);
+      border-radius: 8px; font-size: 0.55em; color: #d6ebe1;
+      background: rgba(7, 201, 131, 0.06);
+    }
+    .map-tool.active {
+      background: linear-gradient(135deg, var(--wcs-green), var(--wcs-green-bright));
+      color: #051a12; font-weight: 600; border: none;
+    }
+    .map-canvas {
+      flex: 1; min-height: 230px; border-radius: 10px;
+      background: #06100c; border: 1px solid var(--wcs-border);
+      position: relative; overflow: hidden;
+    }
+
+    /* Final */
     .final-slide { text-align: center !important; }
     .final-slide h1 {
-      font-size: 4.5em;
+      font-size: 4.2em;
       background: linear-gradient(135deg, #fff 0%, var(--wcs-green-bright) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
       margin-bottom: 0.3em;
     }
     .final-slide .tagline {
-      font-size: 1.3em;
-      color: var(--wcs-muted);
-      max-width: 800px;
-      margin: 0 auto 40px auto;
-      line-height: 1.5;
+      font-size: 1.25em; color: var(--wcs-muted);
+      max-width: 850px; margin: 0 auto 32px auto; line-height: 1.5;
     }
 
-    /* Progress dot (reveal override) */
     .reveal .progress { color: var(--wcs-green-bright); height: 3px; }
     .reveal .controls { color: var(--wcs-green-bright); }
 
-    /* Utility */
-    .mb-0 { margin-bottom: 0 !important; }
-    .mt-0 { margin-top: 0 !important; }
-
-    /* Small screen safety */
-    @media (max-width: 900px) {
-      .cards.cols-3, .cards.cols-4 { grid-template-columns: 1fr 1fr; }
-      .two-col { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr 1fr; }
+    .pill-row {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px;
+    }
+    .pill-row .tag {
+      padding: 4px 10px; border-radius: 6px;
+      background: rgba(7, 201, 131, 0.12); color: var(--wcs-green-bright);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65em;
     }
   </style>
 </head>
@@ -533,250 +465,166 @@
 
     <!-- 1. TITLE -->
     <section class="title-slide">
-      <span class="eyebrow">Automacon · WCS</span>
-      <h1>Automacon WCS</h1>
-      <div class="subtitle">Enterprise-платформа управления складской роботизацией</div>
+      <span class="eyebrow">Automacon · WCS · Q-итоги</span>
+      <h1>Итоги квартала</h1>
+      <div class="subtitle">Что нового в Automacon WCS — для коллег из смежных подразделений</div>
       <div class="meta">
-        <span>VDA5050</span>
-        <span>ModBus</span>
-        <span>LIF / GeoJSON</span>
-        <span>On-premise</span>
+        <span>Полевой пилот</span>
+        <span>1000 роботов</span>
+        <span>Машина времени</span>
+        <span>Multi-agent AI</span>
       </div>
-      <div class="slide-footer"><span>5 минут · для коллег из смежных подразделений</span><span>2026</span></div>
+      <div class="slide-footer"><span>5 минут · Q-обзор</span><span>2026</span></div>
     </section>
 
-    <!-- 2. WHAT IS WCS -->
+    <!-- 2. QUARTER AT A GLANCE -->
     <section>
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">О продукте</div>
+        <div class="section-tag">Квартал в одном слайде</div>
       </div>
-      <div class="section-title">Что такое WCS</div>
-      <h2>Единый «мозг» склада <span class="accent">от железа до оператора</span></h2>
-      <div class="two-col ratio-40-60" style="margin-top: 24px;">
+      <div class="section-title">Что мы сделали</div>
+      <h2>7 значимых событий <span class="accent">за квартал</span></h2>
+      <div class="qgrid">
+        <div class="qcard">
+          <div class="num">01 · Field</div>
+          <h4>Полевой пилот во ВкусВилл «Вешки»</h4>
+          <p>Робот AK-2000 + физический симулятор Modbus.</p>
+        </div>
+        <div class="qcard">
+          <div class="num">02 · Scale</div>
+          <h4>Нагрузочные тесты на 1000 устройств</h4>
+          <p>Подтверждена стабильная работа парка.</p>
+        </div>
+        <div class="qcard">
+          <div class="num">03 · Telemetry</div>
+          <h4>Релиз «машины времени»</h4>
+          <p>Полное повторение состояния системы.</p>
+        </div>
+        <div class="qcard">
+          <div class="num">04 · Workflow</div>
+          <h4>Быстрая разработка кастомных блоков</h4>
+          <p>Сложные блоки — за часы, а не за дни.</p>
+        </div>
+        <div class="qcard">
+          <div class="num">05 · 3D Models</div>
+          <h4>Кастомные модели роботов в 3D</h4>
+          <p>Пользовательская визуализация любых AGV.</p>
+        </div>
+        <div class="qcard">
+          <div class="num">06 · LIF Editor</div>
+          <h4>Собственный редактор карт LIF</h4>
+          <p>Без внешних CAD/GIS инструментов.</p>
+        </div>
+      </div>
+      <div class="achievement" style="margin-top: 14px;">
+        <div class="badge">07</div>
+        <div class="body">
+          <h4>Multi-agent AI с навыками — встроен в WCS</h4>
+          <p>«Что делал AGV-003 20 минут назад?», «Куда поехали все роботы?», «Сколько миссий сейчас в работе?» — оператор спрашивает естественным языком, ассистент отвечает и предлагает действия. Формализована быстрая разработка новых навыков.</p>
+        </div>
+      </div>
+      <div class="slide-footer"><span>02 · Обзор</span><span>Automacon WCS · Q-итоги</span></div>
+    </section>
+
+    <!-- 3. ACHIEVEMENT 1: VKUSVILL FIELD PILOT -->
+    <section>
+      <div class="brand-bar">
+        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
+        <div class="section-tag">Достижение 01</div>
+      </div>
+      <div class="section-title">Полевые испытания</div>
+      <h2>Пилот во ВкусВилл «Вешки» — <span class="accent">прошёл успешно</span></h2>
+      <div class="two-col ratio-55-45">
         <div>
-          <p class="muted" style="font-size: 0.85em; line-height: 1.55;">
-            WCS — Warehouse Control System. Уровень между WMS и физикой склада:
-            роботами, периферией, человеком.
-          </p>
+          <ul class="check-list">
+            <li>Площадка: <span class="accent">склад ВкусВилл «Вешки»</span></li>
+            <li>Робот: <span class="accent">AK-2000</span> по протоколу VDA5050</li>
+            <li>Периферия: <span class="accent">физический симулятор Modbus-устройства</span></li>
+            <li>Все тесты пройдены — лишь небольшой набор замечаний</li>
+            <li>Подтверждена работа сценариев и интеграции «end-to-end»</li>
+          </ul>
           <div class="pills">
-            <span class="pill solid">WMS ↔ WCS ↔ AGV</span>
-            <span class="pill">Роботы</span>
-            <span class="pill">Периферия</span>
-            <span class="pill">Оператор</span>
+            <span class="pill solid">Field-tested</span>
+            <span class="pill">VDA5050</span>
+            <span class="pill">Modbus</span>
+            <span class="pill warn">Минор-замечания → бэклог</span>
           </div>
         </div>
-        <div class="cards cols-2">
-          <div class="card">
-            <h4><span class="icon">⚙</span>Оркестрация</h4>
-            <p>Роботы любых брендов, ModBus-устройства, сценарии и миссии — в одном контроллере.</p>
+        <div>
+          <div class="stats" style="grid-template-columns: 1fr 1fr;">
+            <div class="stat"><div class="num">AK-2000</div><div class="label">робот</div></div>
+            <div class="stat"><div class="num">Modbus</div><div class="label">физ. симулятор</div></div>
+            <div class="stat"><div class="num">PASS</div><div class="label">все тесты</div></div>
+            <div class="stat"><div class="num">«Вешки»</div><div class="label">площадка</div></div>
           </div>
-          <div class="card">
-            <h4><span class="icon">🗺</span>Видимость</h4>
-            <p>Карта 2D/3D, телеметрия, история и плеер движения в прошлом.</p>
-          </div>
-          <div class="card">
-            <h4><span class="icon">🔌</span>Открытость</h4>
-            <p>REST API 100%, плагины, NoCode/LowCode-сценарии с блоками JS.</p>
-          </div>
-          <div class="card">
-            <h4><span class="icon">📦</span>Коробка</h4>
-            <p>On-premise поставка на сервера заказчика. Без облачной зависимости.</p>
-          </div>
+          <p class="muted" style="font-size: 0.78em; margin-top: 14px; line-height: 1.5;">
+            Это первая «боевая» проверка WCS на чужой площадке с настоящим роботом и
+            промышленной периферией. Платформа прошла валидацию.
+          </p>
         </div>
       </div>
-      <div class="slide-footer"><span>01 · Обзор</span><span>Automacon WCS</span></div>
+      <div class="slide-footer"><span>03 · Field Pilot</span><span>Automacon WCS · Q-итоги</span></div>
     </section>
 
-    <!-- 3. KEY NUMBERS / HIGHLIGHTS -->
+    <!-- 4. ACHIEVEMENT 2: 1000 ROBOTS LOAD -->
     <section>
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Ключевые цифры</div>
+        <div class="section-tag">Достижение 02</div>
       </div>
-      <div class="section-title">Масштаб и охват</div>
-      <h2>Цифры, которые говорят <span class="accent">за продукт</span></h2>
+      <div class="section-title">Нагрузочные тесты</div>
+      <h2><span class="accent">1000 роботизированных устройств</span> — стабильно</h2>
       <div class="stats">
-        <div class="stat">
-          <div class="num">200k</div>
-          <div class="label">объектов на карте</div>
+        <div class="stat"><div class="num">1 000</div><div class="label">устройств одновременно</div></div>
+        <div class="stat"><div class="num">PASS</div><div class="label">стабильность</div></div>
+        <div class="stat"><div class="num">VDA5050</div><div class="label">+ Modbus в контуре</div></div>
+        <div class="stat"><div class="num">enterprise</div><div class="label">готовность</div></div>
+      </div>
+      <div class="cards cols-3" style="margin-top: 18px;">
+        <div class="card">
+          <h4><span class="icon">⚡</span>Стабильная диспетчеризация</h4>
+          <p>Алгоритмы назначения корректно работают на парке в 1000 устройств без деградации.</p>
         </div>
-        <div class="stat">
-          <div class="num">60k</div>
-          <div class="label">проверено на реальном складе</div>
+        <div class="card">
+          <h4><span class="icon">📡</span>Шина и стриминг</h4>
+          <p>NATS + Vector выдерживают полную телеметрию парка в реальном времени.</p>
         </div>
-        <div class="stat">
-          <div class="num">100%</div>
-          <div class="label">REST API покрытие</div>
-        </div>
-        <div class="stat">
-          <div class="num">100×</div>
-          <div class="label">ускорение симуляции</div>
+        <div class="card">
+          <h4><span class="icon">🛡</span>Готовность к крупным площадкам</h4>
+          <p>Цифра, с которой можно выходить к enterprise-клиентам уровня «гипер-склад».</p>
         </div>
       </div>
-      <div class="cards cols-3" style="margin-top: 22px;">
-        <div class="card">
-          <h4><span class="icon">🤖</span>Любой парк AGV</h4>
-          <p>MiR, KUKA, Omron, Geek+ и неизвестные бренды — единый контроллер по VDA5050 (1.1 / 2.0 / 3.0).</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">🧩</span>Любая периферия</h4>
-          <p>Конвейеры, лифты, ворота, весы, зарядки, паллетайзеры — через ModBus TCP/RTU.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">🧠</span>NoCode сценарии</h4>
-          <p>Визуальный конструктор, ветвления, циклы, подпроцессы + блоки JS для сложной логики.</p>
-        </div>
-      </div>
-      <div class="slide-footer"><span>02 · Highlights</span><span>Automacon WCS</span></div>
+      <div class="slide-footer"><span>04 · Load test</span><span>Automacon WCS · Q-итоги</span></div>
     </section>
 
-    <!-- 4. ROBOTS VDA5050 -->
+    <!-- 5. ACHIEVEMENT 3: TELEMETRY REPLAY -->
     <section>
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модуль 1 · Роботы</div>
+        <div class="section-tag">Достижение 03</div>
       </div>
-      <div class="section-title">Управление роботами</div>
-      <h2>VDA5050 — <span class="accent">один протокол на весь парк</span></h2>
+      <div class="section-title">Телеметрия · «машина времени»</div>
+      <h2>Полное повторение состояния системы — <span class="accent">в любой момент времени</span></h2>
       <div class="two-col">
         <div>
-          <div class="cards cols-1" style="grid-template-columns: 1fr;">
-            <div class="card">
-              <h4><span class="icon">V</span>Полный VDA5050</h4>
-              <p>Версии 1.1, 2.0, 3.0. Подключение, статусы, миссии, ошибки, order state.</p>
-            </div>
-            <div class="card">
-              <h4><span class="icon">🏭</span>Мульти-вендорность</h4>
-              <p>MiR · KUKA · Omron · Geek+ · неизвестные бренды — одновременно в одном контроллере.</p>
-            </div>
-            <div class="card">
-              <h4><span class="icon">⚡</span>Умная диспетчеризация</h4>
-              <p>Ближайший · наименее загруженный · приоритет миссии · deadlock prevention.</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3>Что это даёт бизнесу</h3>
+          <p class="muted" style="font-size: 0.85em; line-height: 1.55;">
+            Релиз новой системы телеметрии. Можно «вернуться» в любую точку прошлого
+            и увидеть склад ровно таким, каким он был — с роботами, миссиями, ошибками,
+            состоянием периферии.
+          </p>
           <ul class="check-list">
-            <li>Не зависим от одного вендора роботов</li>
-            <li>Можно подключать новые модели без разработки ядра</li>
-            <li>Максимальная утилизация парка — роботы не простаивают</li>
-            <li>Трафик-контроль: ограничение плотности, динамическая скорость, предотвращение пробок</li>
-            <li>Автосценарии восстановления при потере связи, зависании, коллизиях</li>
+            <li>Точное повторение состояния по всем сущностям</li>
+            <li>Плеер: <span class="accent">play / pause / перемотка / скорость</span></li>
+            <li>Разбор инцидентов «постфактум» без догадок</li>
+            <li>Юридическая прозрачность работы склада</li>
           </ul>
         </div>
-      </div>
-      <div class="slide-footer"><span>03 · Robots</span><span>Automacon WCS</span></div>
-    </section>
-
-    <!-- 5. MODBUS PERIPHERALS -->
-    <section>
-      <div class="brand-bar">
-        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модуль 2 · Периферия</div>
-      </div>
-      <div class="section-title">Управление периферией</div>
-      <h2>ModBus — <span class="accent">любое устройство в контуре</span></h2>
-      <div class="cards cols-3">
-        <div class="card">
-          <h4><span class="icon">🔧</span>Любые устройства</h4>
-          <p>Конвейеры, лифты, ворота, весы, индикаторы, зарядки, паллетайзеры.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">🔁</span>TCP / RTU</h4>
-          <p>Таймауты, retry, авто-переподключение, соблюдение настроек поллинга.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">📡</span>Групповые операции</h4>
-          <p>Экономичные групповые чтение и запись регистров — минимум нагрузки на шину.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">⏱</span>Цикл + события</h4>
-          <p>Циклический опрос и немедленная запись по событию из сценариев.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">🛡</span>Отказоустойчивость</h4>
-          <p>Автоматическое восстановление связи, эскалация ошибок, изоляция сбойных линий.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">🧪</span>Симуляция</h4>
-          <p>Эмуляция устройств для отладки сценариев без железа.</p>
-        </div>
-      </div>
-      <div class="slide-footer"><span>04 · Peripherals</span><span>Automacon WCS</span></div>
-    </section>
-
-    <!-- 6. MAP & VISUALIZATION -->
-    <section>
-      <div class="brand-bar">
-        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модуль 3 · Карта</div>
-      </div>
-      <div class="section-title">Карта и визуализация</div>
-      <h2>2D / 3D в реалтайме — <span class="accent">до 200 тыс. объектов</span></h2>
-      <div class="two-col ratio-60-40">
-        <div class="cards cols-2">
-          <div class="card">
-            <h4><span class="icon">🗺</span>Мульти-карта</h4>
-            <p>LIF и GeoJSON. Этажи, цеха, территории. Слои: точки, дороги, динамические устройства.</p>
-          </div>
-          <div class="card">
-            <h4><span class="icon">🎬</span>2D ↔ 3D</h4>
-            <p>Быстрое переключение. 2D — SVG, 3D — OBJ/MTL. Реалтайм координаты и углы.</p>
-          </div>
-          <div class="card">
-            <h4><span class="icon">🎯</span>Поиск</h4>
-            <p>По ID, имени, коду, статусу, заряду, производителю. Легко расширяется.</p>
-          </div>
-          <div class="card">
-            <h4><span class="icon">🎥</span>Автослежение</h4>
-            <p>Камера автоматически следит за роботом в 2D и 3D.</p>
-          </div>
-          <div class="card">
-            <h4><span class="icon">↔</span>Таблицы ↔ карта</h4>
-            <p>Сквозная навигация миссий / ошибок / устройств. Обновление в реальном времени.</p>
-          </div>
-          <div class="card">
-            <h4><span class="icon">✨</span>Плавность</h4>
-            <p>Интерполяция позиций — никаких рывков, честные углы поворота.</p>
-          </div>
-        </div>
         <div>
-          <h3>Почему это важно</h3>
-          <p class="muted" style="font-size: 0.85em; line-height: 1.55;">
-            Диспетчер и техподдержка видят склад целиком, могут «провалиться» в любой объект и
-            моментально перейти от записи в таблице к точке на карте — и обратно.
-          </p>
-          <div class="pills">
-            <span class="pill">LIF</span>
-            <span class="pill">GeoJSON</span>
-            <span class="pill">SVG / OBJ / MTL</span>
-            <span class="pill">WebSocket</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-footer"><span>05 · Map</span><span>Automacon WCS</span></div>
-    </section>
-
-    <!-- 7. HISTORY & ANALYTICS -->
-    <section>
-      <div class="brand-bar">
-        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модуль 4 · История</div>
-      </div>
-      <div class="section-title">История и аналитика</div>
-      <h2>«Машина времени» склада + <span class="accent">Grafana под капотом</span></h2>
-
-      <div class="two-col">
-        <div>
-          <h3>Плеер движения в прошлом</h3>
-          <p class="muted" style="font-size: 0.85em; line-height: 1.5;">
-            Движение роботов, состояние устройств, миссий и ошибок в любой момент времени —
-            строго в соответствии с точками изменений.
-          </p>
           <div class="timeline">
-            <div class="timeline-track"></div>
+            <div class="timeline-track">
+              <div class="timeline-cursor" style="left: 62%;"></div>
+            </div>
             <div class="timeline-marks">
               <div class="timeline-mark">08:00</div>
               <div class="timeline-mark">10:00</div>
@@ -786,211 +634,438 @@
             </div>
           </div>
           <div class="timeline-controls">
-            <span>▶ play</span><span>⏸ pause</span><span>⏮ перемотка</span><span>× скорость</span>
+            <span>▶ play</span><span>⏸ pause</span><span>⏮ перемотка</span><span>1× / 10× / 100×</span>
+          </div>
+          <div class="pills" style="margin-top: 16px;">
+            <span class="pill solid">Released</span>
+            <span class="pill">Time-travel</span>
+            <span class="pill">Audit-ready</span>
           </div>
         </div>
-        <div>
-          <h3>Дашборды и отчёты</h3>
-          <ul class="check-list">
-            <li>Нативные системные виджеты: карты, миссии, роботы, ошибки</li>
-            <li>Аналитические виджеты на движке <span class="accent">Grafana</span></li>
-            <li>Стартер миссий прямо из дашборда</li>
-            <li>Кастомные дашборды — без разработчиков</li>
-            <li>Автообновление и реалтайм по WebSocket</li>
-          </ul>
-        </div>
       </div>
-      <div class="slide-footer"><span>06 · History &amp; Analytics</span><span>Automacon WCS</span></div>
+      <div class="slide-footer"><span>05 · Telemetry replay</span><span>Automacon WCS · Q-итоги</span></div>
     </section>
 
-    <!-- 8. SCENARIOS LOGIC -->
+    <!-- 6. ACHIEVEMENT 4: FAST CUSTOM WORKFLOW BLOCKS -->
     <section>
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модуль 5 · Сценарии</div>
+        <div class="section-tag">Достижение 04</div>
       </div>
-      <div class="section-title">Сценарии и логика</div>
-      <h2>NoCode / LowCode конструктор <span class="accent">для диспетчеров и инженеров</span></h2>
-      <div class="cards cols-2">
-        <div class="card">
-          <h4><span class="icon">🧱</span>Визуальный конструктор</h4>
-          <p>Ноды, связи, ветвления, циклы, вызов подпроцессов. Без перекомпиляции ядра.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">{ }</span>Блоки JavaScript</h4>
-          <p>Расчёты, фильтрация, кастомные API. Сложные сценарии: выбор ячеек, оборудования, ожидание, передача ордера.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">👤</span>Web-формы для оператора</h4>
-          <p>Диалоги, выбор из списка, ввод данных, подтверждения — прямо внутри сценария.</p>
-        </div>
-        <div class="card">
-          <h4><span class="icon">📋</span>Транспортные задания</h4>
-          <p>FIFO, приоритеты, динамическое назначение. Пулы роботов, deadlock prevention.</p>
-        </div>
+      <div class="section-title">Палитра блоков воркфлоу</div>
+      <h2>Сложный кастомный блок — <span class="accent">за часы, не за дни</span></h2>
+      <div class="workflow">
+        <div class="wf-node">Старт<small>trigger</small></div>
+        <div class="wf-arrow">→</div>
+        <div class="wf-node">Выбор робота<small>core</small></div>
+        <div class="wf-arrow">→</div>
+        <div class="wf-node custom">Custom-блок<small>built in hours</small></div>
+        <div class="wf-arrow">→</div>
+        <div class="wf-node">Modbus → Лифт<small>core</small></div>
+        <div class="wf-arrow">→</div>
+        <div class="wf-node">Завершение<small>core</small></div>
       </div>
-      <div class="pills" style="margin-top: 18px;">
-        <span class="pill solid">Диспетчер создаёт логику сам</span>
-        <span class="pill">Без релиза</span>
-        <span class="pill">Подпроцессы</span>
-        <span class="pill">Эскалация ошибок</span>
-      </div>
-      <div class="slide-footer"><span>07 · Scenarios</span><span>Automacon WCS</span></div>
-    </section>
-
-    <!-- 9. INTEGRATIONS, API, RELIABILITY -->
-    <section>
-      <div class="brand-bar">
-        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модули 6–7 · API &amp; надёжность</div>
-      </div>
-      <div class="section-title">Интеграции, API, надёжность</div>
-      <h2>Открытый контур <span class="accent">+ автоматическое восстановление</span></h2>
-      <div class="two-col">
+      <div class="two-col" style="margin-top: 16px;">
         <div>
-          <h3>Интеграции и API</h3>
+          <h3>Что доказали</h3>
           <ul class="check-list">
-            <li>REST API с покрытием <span class="accent">100%</span> · Swagger / OpenAPI</li>
-            <li>Запуск миссий, получение телеметрии, управление парком</li>
-            <li>Полное CRUD + <span class="accent">RBAC</span> на уровне записей</li>
-            <li>Импорт карт из CAD / GIS (LIF / GeoJSON)</li>
+            <li>Формализован процесс разработки нестандартных блоков</li>
+            <li>Сложные блоки — реально делать за часы</li>
+            <li>Палитра расширяется без перекомпиляции ядра</li>
+            <li>Интеграционные сценарии под заказчика — кратно быстрее</li>
           </ul>
         </div>
         <div>
-          <h3>Надёжность</h3>
-          <ul class="check-list">
-            <li>Обработка потери связи, зависания, коллизий, недостижимости цели</li>
-            <li>Автоматические сценарии восстановления</li>
-            <li>Эскалация ошибок диспетчеру</li>
-            <li>Трафик-контроль: плотность, динамическая скорость, предотвращение пробок</li>
-          </ul>
+          <h3>Что это даёт</h3>
+          <p class="muted" style="font-size: 0.85em; line-height: 1.5;">
+            Радикально снижается стоимость кастомизации под клиента.
+            Заказчики получают «свои» сценарии в логике WCS, не дожидаясь релиз-цикла.
+          </p>
+          <div class="pills">
+            <span class="pill solid">Hours, not days</span>
+            <span class="pill">No core rebuild</span>
+            <span class="pill">JS-friendly</span>
+          </div>
         </div>
       </div>
-      <div class="slide-footer"><span>08 · API &amp; Reliability</span><span>Automacon WCS</span></div>
+      <div class="slide-footer"><span>06 · Custom blocks</span><span>Automacon WCS · Q-итоги</span></div>
     </section>
 
-    <!-- 10. DASHBOARDS + MAP EDITOR + SIM -->
+    <!-- 7. ACHIEVEMENT 5: CUSTOM 3D ROBOT MODELS -->
     <section>
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модули 8–11</div>
+        <div class="section-tag">Достижение 05</div>
       </div>
-      <div class="section-title">Дашборды · Редактор карт · Симулятор</div>
-      <h2>Полный инструментарий <span class="accent">в одной коробке</span></h2>
-      <div class="cards cols-3">
-        <div class="card">
-          <h4><span class="icon">📊</span>Дашборды</h4>
-          <ul>
-            <li>Системные виджеты и Grafana</li>
-            <li>Drag &amp; drop лэйаутов</li>
-            <li>Автосохранение, публикация, каталоги</li>
-            <li>Реалтайм по WebSocket</li>
+      <div class="section-title">Кастомные модели устройств</div>
+      <h2>Любая модель робота — <span class="accent">в том числе в 3D</span></h2>
+      <div class="two-col ratio-60-40">
+        <div>
+          <p class="muted" style="font-size: 0.85em; line-height: 1.55;">
+            WCS теперь умеет работать с пользовательскими моделями роботизированных
+            устройств. Можно загружать <span class="accent">собственные 3D-модели</span> AGV и
+            периферии — карта показывает реальные габариты и геометрию.
+          </p>
+          <ul class="check-list">
+            <li>Загрузка собственных 3D-моделей (OBJ / MTL)</li>
+            <li>2D-силуэты SVG для упрощённого режима</li>
+            <li>Реальные габариты роботов и грузов</li>
+            <li>Корректное отображение угла поворота и позиции</li>
+            <li>Вкус «своего» AGV для каждого заказчика</li>
           </ul>
+          <div class="pills">
+            <span class="pill solid">User-defined</span>
+            <span class="pill">3D · OBJ/MTL</span>
+            <span class="pill">2D · SVG</span>
+          </div>
         </div>
-        <div class="card">
-          <h4><span class="icon">✏</span>Редактор карт</h4>
-          <ul>
-            <li>Пустой холст или импорт LIF / GeoJSON</li>
-            <li>Слои, примитивы, растровый слой</li>
-            <li>Валидация графа, версионирование</li>
+        <div class="robot-3d">
+          <svg class="robot-svg" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#5ce0b0"/>
+                <stop offset="100%" stop-color="#0D9373"/>
+              </linearGradient>
+              <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#9ff0c8"/>
+                <stop offset="100%" stop-color="#07C983"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="110" cy="170" rx="80" ry="14" fill="rgba(7,201,131,0.18)"/>
+            <polygon points="40,140 180,140 200,110 20,110" fill="url(#body)" opacity="0.95"/>
+            <polygon points="20,110 200,110 180,80 40,80" fill="url(#top)"/>
+            <polygon points="40,80 180,80 160,55 60,55" fill="#0b1a14" stroke="#5ce0b0" stroke-width="1.2"/>
+            <rect x="80" y="62" width="60" height="12" rx="2" fill="#07C983" opacity="0.8"/>
+            <circle cx="55" cy="148" r="14" fill="#0b1a14" stroke="#5ce0b0" stroke-width="1.5"/>
+            <circle cx="165" cy="148" r="14" fill="#0b1a14" stroke="#5ce0b0" stroke-width="1.5"/>
+            <text x="110" y="195" text-anchor="middle" fill="#90a9a0" font-family="JetBrains Mono" font-size="10" letter-spacing="2">CUSTOM AGV · 3D</text>
+          </svg>
+        </div>
+      </div>
+      <div class="slide-footer"><span>07 · 3D models</span><span>Automacon WCS · Q-итоги</span></div>
+    </section>
+
+    <!-- 8. ACHIEVEMENT 6: LIF MAP EDITOR -->
+    <section>
+      <div class="brand-bar">
+        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
+        <div class="section-tag">Достижение 06</div>
+      </div>
+      <div class="section-title">Редактор карт</div>
+      <h2>Собственный редактор карт <span class="accent">в формате LIF</span></h2>
+      <div class="two-col ratio-55-45">
+        <div>
+          <ul class="check-list">
+            <li>Создание карт с нуля или импорт LIF / GeoJSON</li>
+            <li>Редактирование слоёв: добавление, удаление, переименование</li>
+            <li>Рисование примитивов: дороги, точки, станции</li>
+            <li>Свойства объектов <span class="accent">по стандарту LIF и VDA5050</span></li>
+            <li>Валидация графа: разрывы путей, несвязность</li>
+            <li>Версионирование карт + откат</li>
+            <li>Растровый слой (план склада)</li>
             <li>Экспорт LIF / GeoJSON / PNG</li>
           </ul>
         </div>
-        <div class="card">
-          <h4><span class="icon">🧪</span>Симулятор</h4>
-          <ul>
-            <li>Эмуляция роботов и устройств без железа</li>
-            <li>Ускорение <span class="accent">0.1× … 100×</span></li>
-            <li>3D-габариты роботов и грузов</li>
-            <li>Ручной запуск миссий, пауза / отмена</li>
-          </ul>
+        <div>
+          <div class="map-editor">
+            <div class="map-tools">
+              <div class="map-tool active">▭ Дорога</div>
+              <div class="map-tool">● Точка</div>
+              <div class="map-tool">⚡ Станция</div>
+              <div class="map-tool">🗂 Слои</div>
+              <div class="map-tool">⤵ Импорт LIF</div>
+              <div class="map-tool">⬆ Экспорт</div>
+              <div class="map-tool">✓ Валидация</div>
+            </div>
+            <div class="map-canvas">
+              <svg viewBox="0 0 360 240" width="100%" height="100%">
+                <defs>
+                  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(92,224,176,0.08)" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)"/>
+                <path d="M 30 200 L 30 60 L 200 60 L 200 180 L 330 180" stroke="#07C983" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M 200 60 L 320 40" stroke="#5ce0b0" stroke-width="2.4" fill="none" stroke-dasharray="6 4"/>
+                <circle cx="30" cy="200" r="6" fill="#07C983"/>
+                <circle cx="30" cy="60" r="6" fill="#07C983"/>
+                <circle cx="200" cy="60" r="6" fill="#07C983"/>
+                <circle cx="200" cy="180" r="6" fill="#07C983"/>
+                <circle cx="330" cy="180" r="6" fill="#07C983"/>
+                <circle cx="320" cy="40" r="6" fill="#5ce0b0"/>
+                <rect x="60" y="100" width="50" height="36" fill="rgba(7,201,131,0.2)" stroke="#07C983" stroke-width="1.5" rx="3"/>
+                <rect x="240" y="110" width="50" height="36" fill="rgba(7,201,131,0.2)" stroke="#07C983" stroke-width="1.5" rx="3"/>
+                <text x="350" y="232" text-anchor="end" fill="#5ce0b0" font-family="JetBrains Mono" font-size="9">LIF · v3</text>
+              </svg>
+            </div>
+          </div>
+          <div class="pills" style="justify-content: flex-end;">
+            <span class="pill solid">Own LIF editor</span>
+            <span class="pill">No CAD/GIS needed</span>
+          </div>
         </div>
       </div>
-      <div class="slide-footer"><span>09 · Tools</span><span>Automacon WCS</span></div>
+      <div class="slide-footer"><span>08 · LIF editor</span><span>Automacon WCS · Q-итоги</span></div>
     </section>
 
-    <!-- 11. ARCHITECTURE & STACK -->
+    <!-- 9. ACHIEVEMENT 7 (intro): MULTI-AGENT AI -->
     <section>
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Модуль 10 · Архитектура</div>
+        <div class="section-tag">Достижение 07</div>
       </div>
-      <div class="section-title">Архитектура и стек</div>
-      <h2>On-premise. <span class="accent">Плагинизация. Промышленный стек.</span></h2>
+      <div class="section-title">Multi-agent AI ассистент</div>
+      <h2>WCS теперь <span class="accent">отвечает на вопросы оператора</span></h2>
       <div class="two-col">
         <div>
-          <h3>Поставка и расширение</h3>
+          <p class="muted" style="font-size: 0.85em; line-height: 1.55;">
+            В WCS появился мультиагентный ИИ с набором навыков. Оператор спрашивает
+            на естественном языке — система понимает контекст, ходит в данные,
+            возвращает ответ и предлагает действие.
+          </p>
+          <h3 style="margin-top: 16px;">Навыки (skills)</h3>
+          <div class="pills">
+            <span class="pill">missions_live_status</span>
+            <span class="pill">robot_history</span>
+            <span class="pill">errors_overview</span>
+            <span class="pill">fleet_routing</span>
+            <span class="pill">+ ваши</span>
+          </div>
+          <h3 style="margin-top: 18px;">Ускоренная разработка навыков</h3>
           <ul class="check-list">
-            <li>Коробочное решение на серверах заказчика</li>
-            <li>Без облачной зависимости</li>
-            <li>Сценарные блоки — отдельные микросервисы</li>
-            <li>Расширение без перекомпиляции ядра</li>
+            <li>Формализована схема добавления нового навыка</li>
+            <li>Навык — это инструмент агента + промпт + права</li>
+            <li>Можно покрывать ниши под конкретного заказчика</li>
           </ul>
         </div>
         <div>
-          <h3>Технологии</h3>
-          <div class="stack">
-            <div class="stack-item">
-              <div class="kind">Backend</div>
-              <div class="value">Go</div>
+          <div class="cards cols-1" style="grid-template-columns: 1fr;">
+            <div class="card">
+              <h4><span class="icon">🤖</span>Multi-agent</h4>
+              <p>Несколько специализированных агентов: оркестратор миссий, аналитик ошибок, гид по карте, диспетчер. Все говорят между собой.</p>
             </div>
-            <div class="stack-item">
-              <div class="kind">Frontend</div>
-              <div class="value">Next.js</div>
+            <div class="card">
+              <h4><span class="icon">💬</span>Natural language</h4>
+              <p>«Что делал AGV-003 20 минут назад?» — ассистент сам идёт в телеметрию и плеер истории.</p>
             </div>
-            <div class="stack-item">
-              <div class="kind">База данных</div>
-              <div class="value">PostgreSQL</div>
-            </div>
-            <div class="stack-item">
-              <div class="kind">Стриминг</div>
-              <div class="value">NATS · Vector</div>
-            </div>
-            <div class="stack-item">
-              <div class="kind">Аналитика</div>
-              <div class="value">ClickHouse · Grafana</div>
-            </div>
-            <div class="stack-item">
-              <div class="kind">Протоколы</div>
-              <div class="value">VDA5050 · ModBus</div>
+            <div class="card">
+              <h4><span class="icon">⚡</span>Action-aware</h4>
+              <p>Ассистент не только отвечает, но и предлагает следующее действие: «Хотите вывести список роботов с активными ошибками?»</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="slide-footer"><span>10 · Architecture</span><span>Automacon WCS</span></div>
+      <div class="slide-footer"><span>09 · AI ассистент</span><span>Automacon WCS · Q-итоги</span></div>
     </section>
 
-    <!-- 12. SUMMARY TABLE -->
+    <!-- 10. AI DEMO 1 -->
     <section>
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
-        <div class="section-tag">Итого</div>
+        <div class="section-tag">Демо AI · история</div>
       </div>
-      <div class="section-title">Резюме</div>
-      <h2>WCS — Enterprise-платформа <span class="accent">управления складской роботизацией</span></h2>
-      <table class="summary-table">
-        <thead>
-          <tr><th>Возможность</th><th>Статус</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>VDA5050 — любые AGV, любые парки</td><td>✓</td></tr>
-          <tr><td>ModBus — произвольные устройства</td><td>✓</td></tr>
-          <tr><td>Карта до 200k объектов · LIF · GeoJSON</td><td>✓</td></tr>
-          <tr><td>История склада + плеер движения</td><td>✓</td></tr>
-          <tr><td>Дашборды + Grafana (самостоятельная настройка)</td><td>✓</td></tr>
-          <tr><td>Визуальные сценарии + JS-блоки</td><td>✓</td></tr>
-          <tr><td>Web-формы взаимодействия с оператором</td><td>✓</td></tr>
-          <tr><td>REST API (документированная, 100%)</td><td>✓</td></tr>
-          <tr><td>On-premise коробочная поставка</td><td>✓</td></tr>
-          <tr><td>Плагинизация (микросервисные блоки)</td><td>✓</td></tr>
-          <tr><td>Собственный редактор карт</td><td>✓</td></tr>
-          <tr><td>Стек: Go · Next.js · ClickHouse · NATS</td><td>✓</td></tr>
-        </tbody>
-      </table>
-      <div class="slide-footer"><span>11 · Summary</span><span>Automacon WCS</span></div>
+      <div class="section-title">AI ассистент · сценарий 1</div>
+      <h2>«Что делал AGV-003 <span class="accent">20 минут назад?</span>»</h2>
+      <div class="two-col ratio-55-45">
+        <div class="chat-mock">
+          <div class="chat-head">
+            <div class="who">
+              <div class="avatar">🤖</div>
+              <div>
+                <div class="name">AI ассистент</div>
+                <div class="sub">WCS</div>
+              </div>
+            </div>
+            <div class="actions">⌫ ✕</div>
+          </div>
+          <div class="chat-body">
+            <div class="bubble user">Что делала AVG-003 примерно 20 минут назад?</div>
+            <div class="bubble bot">
+              Примерно 20 минут назад (в период с <strong>10:40 по 10:46</strong>) робот <strong>AGV-003</strong> выполнял миссию по шаблону «<em>⭐ A-&gt;rest (vshk)</em>» (ID: 34747).<br><br>
+              Вот детали этой активности:<br>
+              <strong>Статус:</strong> Успешно завершена (COMPLETED).<br>
+              <strong>Время начала:</strong> 10:40:29.<br>
+              <strong>Время завершения:</strong> 10:46:29.<br>
+              <strong>Длительность:</strong> 6 минут (360 сек).
+              <div><span class="meta-line">⏱ robot_history · 12ms</span></div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <div class="field">Напишите сообщение…</div>
+            <div class="send">➤</div>
+          </div>
+          <div class="chat-hint">Enter — отправить · Shift+Enter — новая строка</div>
+        </div>
+        <div>
+          <h3>Что под капотом</h3>
+          <ul class="check-list">
+            <li>Агент <span class="accent">resolve</span>: понял «20 минут назад» → временной диапазон</li>
+            <li>Skill <span class="accent">robot_history</span>: пошёл в телеметрию по AGV-003</li>
+            <li>Skill <span class="accent">missions_live_status</span>: достал миссию и шаблон</li>
+            <li>Агент-нарратор: собрал ответ в человеческий язык</li>
+          </ul>
+          <p class="muted" style="font-size: 0.78em; line-height: 1.5; margin-top: 12px;">
+            Раньше диспетчер вручную фильтровал журналы и плеер. Теперь — один вопрос
+            и ответ за миллисекунды.
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer"><span>10 · AI demo · история</span><span>Automacon WCS · Q-итоги</span></div>
     </section>
 
-    <!-- 13. FINAL / THANKS -->
+    <!-- 11. AI DEMO 2 -->
+    <section>
+      <div class="brand-bar">
+        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
+        <div class="section-tag">Демо AI · парк</div>
+      </div>
+      <div class="section-title">AI ассистент · сценарий 2</div>
+      <h2>«Куда все роботы <span class="accent">поехали?</span>»</h2>
+      <div class="two-col ratio-55-45">
+        <div class="chat-mock">
+          <div class="chat-head">
+            <div class="who">
+              <div class="avatar">🤖</div>
+              <div>
+                <div class="name">AI ассистент</div>
+                <div class="sub">WCS</div>
+              </div>
+            </div>
+            <div class="actions">⌫ ✕</div>
+          </div>
+          <div class="chat-body">
+            <div class="bubble user">Куда все роботы поехали?</div>
+            <div class="bubble bot">
+              На данный момент большинство активных роботов (<strong>более 30 единиц</strong>, включая AGV-078, AGV-076, AGV-061 и другие) выполняют транспортные задания по шаблону «<em>⭐ A-&gt;rest (vshk)</em>».<br><br>
+              Судя по названию шаблона, роботы направляются в <strong>зону отдыха (rest)</strong> или на парковку. Все эти задания были созданы недавно — в период с <strong>10:38 по 10:40</strong>.
+              <div><span class="meta-line">⏱ fleet_routing · 18ms</span></div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <div class="field">Напишите сообщение…</div>
+            <div class="send">➤</div>
+          </div>
+          <div class="chat-hint">Enter — отправить · Shift+Enter — новая строка</div>
+        </div>
+        <div>
+          <h3>Зачем это диспетчеру</h3>
+          <ul class="check-list">
+            <li>Понимание парка <span class="accent">«в одном предложении»</span></li>
+            <li>Группировка по шаблонам миссий — без ручных фильтров</li>
+            <li>Контекст времени: когда были созданы задания</li>
+            <li>Можно спросить «почему?» и идти глубже</li>
+          </ul>
+          <p class="muted" style="font-size: 0.78em; line-height: 1.5; margin-top: 12px;">
+            Это подменяет десятки кликов в дашбордах одной фразой и работает на всём парке.
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer"><span>11 · AI demo · парк</span><span>Automacon WCS · Q-итоги</span></div>
+    </section>
+
+    <!-- 12. AI DEMO 3 -->
+    <section>
+      <div class="brand-bar">
+        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
+        <div class="section-tag">Демо AI · действия</div>
+      </div>
+      <div class="section-title">AI ассистент · сценарий 3</div>
+      <h2>«Сколько миссий сейчас в работе?» <span class="accent">+ предложение действия</span></h2>
+      <div class="two-col ratio-55-45">
+        <div class="chat-mock">
+          <div class="chat-head">
+            <div class="who">
+              <div class="avatar">🤖</div>
+              <div>
+                <div class="name">AI ассистент</div>
+                <div class="sub">WCS</div>
+              </div>
+            </div>
+            <div class="actions">⌫ ✕</div>
+          </div>
+          <div class="chat-body">
+            <div class="bubble user">Сколько миссий сейчас в работе? Что-то на карте кошмар какой-то.</div>
+            <div class="bubble bot">
+              Сейчас в работе (в статусе <strong>RUNNING</strong>) находится <strong>100 миссий</strong>.<br>
+              Всего по текущим статусам:<br>
+              <strong>Выполняются:</strong> 100<br>
+              <strong>Завершено:</strong> 8164<br>
+              <strong>Провалено:</strong> 879<br>
+              <strong>Отменено:</strong> 107<br><br>
+              Если на карте наблюдаются проблемы, возможно, стоит проверить роботов с ошибками. Хотите, я выведу список роботов, у которых сейчас есть активные ошибки?
+              <div><span class="meta-line">⏱ missions_live_status · 9ms</span></div>
+            </div>
+            <div class="bubble user">Давай</div>
+            <div class="bubble bot">
+              На данный момент роботов с активными ошибками в системе <strong>не зафиксировано</strong>.<br>
+              Если на карте всё равно выглядит «кошмарно», это может быть связано с большим количеством одновременных миссий…
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Что показывает кейс</h3>
+          <ul class="check-list">
+            <li>Ассистент <span class="accent">видит проблему по контексту</span> («кошмар какой-то»)</li>
+            <li>Сам предлагает следующий шаг — «вывести роботов с ошибками?»</li>
+            <li>Подтверждение «Давай» — переход к следующему навыку</li>
+            <li>Цепочка агентов идёт глубже без ручных команд</li>
+          </ul>
+          <div class="pills">
+            <span class="pill solid">Conversational</span>
+            <span class="pill">Action-aware</span>
+            <span class="pill">Multi-step</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>12 · AI demo · действия</span><span>Automacon WCS · Q-итоги</span></div>
+    </section>
+
+    <!-- 13. SUMMARY + WHAT'S NEXT -->
+    <section>
+      <div class="brand-bar">
+        <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
+        <div class="section-tag">Итог квартала</div>
+      </div>
+      <div class="section-title">Итог</div>
+      <h2>Квартал, в котором WCS стал <span class="accent">enterprise-ready</span></h2>
+      <div class="cards cols-3">
+        <div class="card">
+          <h4><span class="icon">✓</span>Доказали в поле</h4>
+          <p>Пилот ВкусВилл «Вешки» + 1000-роботный нагрузочный тест.</p>
+        </div>
+        <div class="card">
+          <h4><span class="icon">✓</span>Дали управляемость</h4>
+          <p>Машина времени по телеметрии + AI ассистент для оператора.</p>
+        </div>
+        <div class="card">
+          <h4><span class="icon">✓</span>Дали скорость кастомизации</h4>
+          <p>Кастомные блоки за часы, свои 3D-модели, собственный LIF-редактор.</p>
+        </div>
+      </div>
+      <div class="two-col" style="margin-top: 18px;">
+        <div>
+          <h3>Что это меняет для смежных команд</h3>
+          <ul class="check-list">
+            <li><strong>Продажи:</strong> можно идти к крупным заказчикам с цифрой 1000 устройств</li>
+            <li><strong>Внедрение:</strong> кастомизация — часы, не недели</li>
+            <li><strong>Поддержка:</strong> разбор инцидентов через плеер и AI</li>
+            <li><strong>Маркетинг:</strong> новые фичи для сайта, кейсов и презентаций</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Куда движемся дальше</h3>
+          <ul class="check-list">
+            <li>Закрытие замечаний по итогам пилота «Вешки»</li>
+            <li>Расширение библиотеки навыков AI ассистента</li>
+            <li>Новые шаблонные блоки воркфлоу из пилотов</li>
+            <li>Подготовка к следующим полевым внедрениям</li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-footer"><span>13 · Итог</span><span>Automacon WCS · Q-итоги</span></div>
+    </section>
+
+    <!-- 14. THANKS -->
     <section class="final-slide">
       <div class="brand-bar">
         <div class="logo"><span class="dot"></span><span>AUTOMACON · WCS</span></div>
@@ -998,15 +1073,16 @@
       </div>
       <h1>Спасибо!</h1>
       <div class="tagline">
-        Один контроллер — любые роботы, любая периферия, любые сценарии.<br>
-        <span class="accent">Automacon WCS</span> — склад под полным контролем.
+        Полевой пилот, 1000 роботов, машина времени, AI-ассистент,
+        кастомные 3D-модели и собственный редактор карт —<br>
+        <span class="accent">всё это — за один квартал</span>.
       </div>
       <div class="pills" style="justify-content: center;">
         <span class="pill solid">Вопросы?</span>
-        <span class="pill">Демо по запросу</span>
-        <span class="pill">Пилот на вашем складе</span>
+        <span class="pill">Демо AI-ассистента</span>
+        <span class="pill">Доступ к плееру истории</span>
       </div>
-      <div class="slide-footer" style="justify-content: center;"><span>Automacon · WCS · 2026</span></div>
+      <div class="slide-footer" style="justify-content: center;"><span>Automacon · WCS · Q-итоги · 2026</span></div>
     </section>
 
   </div>
@@ -1014,7 +1090,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
 <script>
   Reveal.initialize({
     hash: true,
@@ -1028,7 +1103,7 @@
     margin: 0.04,
     minScale: 0.2,
     maxScale: 1.8,
-    plugins: [ RevealHighlight, RevealNotes ]
+    plugins: [ RevealNotes ]
   });
 </script>
 
