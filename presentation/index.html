@@ -401,11 +401,53 @@
     /* Robot model mock */
     .robot-3d {
       border: 1px solid var(--wcs-border); border-radius: 14px;
-      padding: 18px; background: rgba(7, 201, 131, 0.04);
+      padding: 0; background: radial-gradient(ellipse at 50% 30%, rgba(7,201,131,0.10), rgba(11,26,20,0.0) 60%), #06100c;
       display: flex; align-items: center; justify-content: center;
-      min-height: 220px; position: relative;
+      min-height: 320px; position: relative; overflow: hidden;
     }
-    .robot-svg { width: 220px; height: auto; }
+    .robot-3d-canvas {
+      width: 100%; height: 320px; display: block; cursor: grab;
+    }
+    .robot-3d-canvas:active { cursor: grabbing; }
+    .robot-3d-overlay {
+      position: absolute; left: 14px; bottom: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62em; color: var(--wcs-green-soft);
+      letter-spacing: 0.18em; pointer-events: none;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+    .robot-3d-badge {
+      position: absolute; right: 14px; top: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6em; color: var(--wcs-green-bright);
+      padding: 4px 10px; border: 1px solid var(--wcs-border);
+      border-radius: 999px; background: rgba(7, 201, 131, 0.08);
+      letter-spacing: 0.16em; pointer-events: none;
+    }
+    .robot-3d-loader, .robot-3d-error {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; color: var(--wcs-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7em; text-align: center; padding: 24px;
+      background: rgba(6,16,12,0.85);
+      letter-spacing: 0.08em;
+    }
+    .robot-3d-error code {
+      display: inline-block; padding: 4px 8px;
+      background: rgba(7, 201, 131, 0.08);
+      border: 1px solid var(--wcs-border);
+      border-radius: 6px; color: var(--wcs-green-soft);
+      font-size: 0.92em;
+    }
+    .robot-3d-spinner {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 2px solid rgba(7, 201, 131, 0.25);
+      border-top-color: var(--wcs-green-bright);
+      animation: r3d-spin 0.9s linear infinite;
+    }
+    @keyframes r3d-spin { to { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
 
     /* LIF map editor mock */
     .map-editor {
@@ -719,7 +761,27 @@
             <span class="pill">2D · SVG</span>
           </div>
         </div>
-        <div class="robot-3d">
+        <div class="robot-3d" data-robot-viewer
+             data-glb="models/ak-2000.glb"
+             data-obj="models/ak-2000.obj"
+             data-mtl="models/ak-2000.mtl">
+          <canvas class="robot-3d-canvas"></canvas>
+          <div class="robot-3d-badge">3D · WebGL</div>
+          <div class="robot-3d-overlay">CUSTOM AGV · AK-2000</div>
+          <div class="robot-3d-loader">
+            <div class="robot-3d-spinner"></div>
+            <div>Загрузка 3D-модели…</div>
+          </div>
+          <div class="robot-3d-error hidden">
+            <div>3D-модель не найдена</div>
+            <div style="color: var(--wcs-muted); font-size: 0.85em; line-height: 1.6;">
+              Положите <code>ak-2000.glb</code> (или <code>ak-2000.obj</code> + <code>.mtl</code>)<br>
+              в папку <code>presentation/models/</code>
+            </div>
+          </div>
+        </div>
+        <!-- Fallback SVG mockup, hidden when 3D viewer mounts; kept as a safety net -->
+        <div class="robot-3d hidden" data-robot-fallback>
           <svg class="robot-svg" viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg" style="width: 280px;">
             <defs>
               <!-- Top / light face -->
@@ -1184,6 +1246,224 @@
 
   </div>
 </div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+  import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+  import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+
+  const COLOR_BG = 0x06100c;
+  const COLOR_GREEN = 0x07C983;
+  const COLOR_GREEN_SOFT = 0x5ce0b0;
+
+  async function fileExists(url) {
+    try {
+      const r = await fetch(url, { method: 'HEAD' });
+      return r.ok;
+    } catch (_) { return false; }
+  }
+
+  function fitCameraToObject(camera, object, controls, offset = 1.6) {
+    const box = new THREE.Box3().setFromObject(object);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    object.position.sub(center);
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    const distance = (maxDim / (2 * Math.tan(fov / 2))) * offset;
+    camera.position.set(distance * 0.9, distance * 0.7, distance);
+    camera.near = distance / 100;
+    camera.far = distance * 100;
+    camera.updateProjectionMatrix();
+    if (controls) {
+      controls.target.set(0, 0, 0);
+      controls.maxDistance = distance * 4;
+      controls.minDistance = distance * 0.4;
+      controls.update();
+    }
+  }
+
+  function applyMaterialTint(object) {
+    object.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        if (!child.material || child.material.map == null) {
+          const mat = new THREE.MeshStandardMaterial({
+            color: 0x6fd8a8,
+            metalness: 0.55,
+            roughness: 0.35,
+            emissive: 0x0a3324,
+            emissiveIntensity: 0.25,
+          });
+          child.material = mat;
+        } else {
+          child.material.metalness = Math.max(child.material.metalness ?? 0.4, 0.45);
+          child.material.roughness = Math.min(child.material.roughness ?? 0.5, 0.55);
+        }
+      }
+    });
+  }
+
+  async function initViewer(host) {
+    const canvas = host.querySelector('.robot-3d-canvas');
+    const loader = host.querySelector('.robot-3d-loader');
+    const errorEl = host.querySelector('.robot-3d-error');
+    const glbUrl = host.dataset.glb;
+    const objUrl = host.dataset.obj;
+    const mtlUrl = host.dataset.mtl;
+
+    const hasGlb = glbUrl && await fileExists(glbUrl);
+    const hasObj = !hasGlb && objUrl && await fileExists(objUrl);
+    if (!hasGlb && !hasObj) {
+      loader?.classList.add('hidden');
+      errorEl?.classList.remove('hidden');
+      const fallback = document.querySelector('[data-robot-fallback]');
+      if (fallback) {
+        host.classList.add('hidden');
+        fallback.classList.remove('hidden');
+      }
+      return;
+    }
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 1000);
+    camera.position.set(3, 2, 4);
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.6;
+    controls.enablePan = false;
+
+    // Lights
+    const hemi = new THREE.HemisphereLight(0xa8f0cc, 0x0a1a14, 0.55);
+    scene.add(hemi);
+    const key = new THREE.DirectionalLight(0xffffff, 1.6);
+    key.position.set(5, 8, 4);
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0x07C983, 1.2);
+    rim.position.set(-6, 3, -4);
+    scene.add(rim);
+    const fill = new THREE.PointLight(0x5ce0b0, 0.6, 30);
+    fill.position.set(-3, 2, 5);
+    scene.add(fill);
+
+    // Floor disc with subtle glow
+    const disc = new THREE.Mesh(
+      new THREE.CircleGeometry(2.2, 64),
+      new THREE.MeshBasicMaterial({ color: 0x07C983, transparent: true, opacity: 0.06 })
+    );
+    disc.rotation.x = -Math.PI / 2;
+    disc.position.y = -0.001;
+    scene.add(disc);
+    const ring = new THREE.Mesh(
+      new THREE.RingGeometry(2.18, 2.22, 64),
+      new THREE.MeshBasicMaterial({ color: 0x07C983, transparent: true, opacity: 0.45 })
+    );
+    ring.rotation.x = -Math.PI / 2;
+    scene.add(ring);
+
+    function resize() {
+      const rect = host.getBoundingClientRect();
+      const w = Math.max(1, rect.width);
+      const h = Math.max(1, rect.height);
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    new ResizeObserver(resize).observe(host);
+
+    let model;
+    try {
+      if (hasGlb) {
+        const gltfLoader = new GLTFLoader();
+        const gltf = await gltfLoader.loadAsync(glbUrl);
+        model = gltf.scene || gltf.scenes[0];
+      } else {
+        const objLoader = new OBJLoader();
+        if (mtlUrl && await fileExists(mtlUrl)) {
+          const mtlLoader = new MTLLoader();
+          // Resolve relative paths to MTL location so it can find textures
+          const baseDir = mtlUrl.substring(0, mtlUrl.lastIndexOf('/') + 1);
+          mtlLoader.setResourcePath(baseDir);
+          const materials = await mtlLoader.loadAsync(mtlUrl);
+          materials.preload();
+          objLoader.setMaterials(materials);
+        }
+        model = await objLoader.loadAsync(objUrl);
+      }
+    } catch (err) {
+      console.error('3D model load error', err);
+      loader?.classList.add('hidden');
+      errorEl?.classList.remove('hidden');
+      return;
+    }
+
+    applyMaterialTint(model);
+    scene.add(model);
+    fitCameraToObject(camera, model, controls, 1.7);
+
+    // Drop floor to model bottom
+    const box2 = new THREE.Box3().setFromObject(model);
+    const minY = box2.min.y;
+    disc.position.y = minY - 0.002;
+    ring.position.y = minY;
+
+    loader?.classList.add('hidden');
+
+    // Pause autorotate on user interaction
+    let interacted = false;
+    const stopAuto = () => {
+      if (interacted) return;
+      interacted = true;
+      controls.autoRotate = false;
+    };
+    canvas.addEventListener('pointerdown', stopAuto);
+    canvas.addEventListener('wheel', stopAuto, { passive: true });
+
+    function tick() {
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  function bootViewers() {
+    document.querySelectorAll('[data-robot-viewer]').forEach((host) => {
+      if (host.dataset.bootDone) return;
+      host.dataset.bootDone = '1';
+      initViewer(host);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootViewers);
+  } else {
+    bootViewers();
+  }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
