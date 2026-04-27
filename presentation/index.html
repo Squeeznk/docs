@@ -474,6 +474,96 @@
       position: relative; overflow: hidden;
     }
 
+    /* Screenshot frame for LIF editor real screenshot */
+    .map-screenshot {
+      position: relative;
+      border: 1px solid var(--wcs-border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(11,26,20,0.9), rgba(7,17,13,0.9));
+      box-shadow: 0 22px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(7,201,131,0.08);
+      isolation: isolate;
+    }
+    .map-screenshot .map-shot-img {
+      display: block; width: 100%; height: auto;
+      /* Light → green duotone via filter chain */
+      filter:
+        contrast(1.05)
+        saturate(0.55)
+        hue-rotate(105deg)
+        brightness(0.92)
+        sepia(0.18);
+      mix-blend-mode: normal;
+    }
+    /* Green wash on top */
+    .map-screenshot::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(120% 80% at 70% 10%, rgba(7,201,131,0.18), transparent 55%),
+        linear-gradient(180deg, rgba(7,201,131,0.10), rgba(13,147,115,0.20));
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Vignette + scanlines for dashboard feel */
+    .map-screenshot::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(7,201,131,0.0) 0px,
+          rgba(7,201,131,0.0) 2px,
+          rgba(7,201,131,0.04) 3px,
+          rgba(7,201,131,0.0) 4px
+        );
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .map-screenshot .map-shot-overlay {
+      position: absolute; left: 14px; bottom: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6em; color: var(--wcs-green-soft);
+      letter-spacing: 0.18em; pointer-events: none;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      z-index: 4;
+    }
+    .map-screenshot .map-shot-badge {
+      position: absolute; right: 14px; top: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58em; color: var(--wcs-green-bright);
+      padding: 4px 10px; border: 1px solid var(--wcs-border);
+      border-radius: 999px; background: rgba(7, 201, 131, 0.12);
+      letter-spacing: 0.18em; pointer-events: none;
+      z-index: 4;
+      backdrop-filter: blur(4px);
+    }
+    .map-screenshot .map-shot-fallback {
+      display: none;
+      padding: 30px 24px;
+      color: var(--wcs-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7em; letter-spacing: 0.08em;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .map-screenshot .map-shot-fallback code {
+      display: inline-block; padding: 3px 8px;
+      background: rgba(7, 201, 131, 0.08);
+      border: 1px solid var(--wcs-border);
+      border-radius: 6px; color: var(--wcs-green-soft);
+    }
+    /* When the image fails to load, JS adds .no-image */
+    .map-screenshot.no-image .map-shot-img,
+    .map-screenshot.no-image .map-shot-overlay,
+    .map-screenshot.no-image .map-shot-badge { display: none; }
+    .map-screenshot.no-image::before,
+    .map-screenshot.no-image::after { display: none; }
+    .map-screenshot.no-image .map-shot-fallback { display: block; }
+
     /* Final */
     .final-slide { text-align: center !important; }
     .final-slide h1 {
@@ -926,39 +1016,19 @@
           </ul>
         </div>
         <div>
-          <div class="map-editor">
-            <div class="map-tools">
-              <div class="map-tool active">▭ Дорога</div>
-              <div class="map-tool">● Точка</div>
-              <div class="map-tool">⚡ Станция</div>
-              <div class="map-tool">🗂 Слои</div>
-              <div class="map-tool">⤵ Импорт LIF</div>
-              <div class="map-tool">⬆ Экспорт</div>
-              <div class="map-tool">✓ Валидация</div>
-            </div>
-            <div class="map-canvas">
-              <svg viewBox="0 0 360 240" width="100%" height="100%">
-                <defs>
-                  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(92,224,176,0.08)" stroke-width="1"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)"/>
-                <path d="M 30 200 L 30 60 L 200 60 L 200 180 L 330 180" stroke="#07C983" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <path d="M 200 60 L 320 40" stroke="#5ce0b0" stroke-width="2.4" fill="none" stroke-dasharray="6 4"/>
-                <circle cx="30" cy="200" r="6" fill="#07C983"/>
-                <circle cx="30" cy="60" r="6" fill="#07C983"/>
-                <circle cx="200" cy="60" r="6" fill="#07C983"/>
-                <circle cx="200" cy="180" r="6" fill="#07C983"/>
-                <circle cx="330" cy="180" r="6" fill="#07C983"/>
-                <circle cx="320" cy="40" r="6" fill="#5ce0b0"/>
-                <rect x="60" y="100" width="50" height="36" fill="rgba(7,201,131,0.2)" stroke="#07C983" stroke-width="1.5" rx="3"/>
-                <rect x="240" y="110" width="50" height="36" fill="rgba(7,201,131,0.2)" stroke="#07C983" stroke-width="1.5" rx="3"/>
-                <text x="350" y="232" text-anchor="end" fill="#5ce0b0" font-family="JetBrains Mono" font-size="9">LIF · v3</text>
-              </svg>
+          <div class="map-screenshot" id="lif-shot">
+            <img class="map-shot-img"
+                 src="images/lif-editor.png"
+                 alt="LIF map editor screenshot"
+                 onerror="this.closest('.map-screenshot').classList.add('no-image')"/>
+            <div class="map-shot-badge">LIF · v3</div>
+            <div class="map-shot-overlay">OWN MAP EDITOR · LIF</div>
+            <div class="map-shot-fallback">
+              Поместите скриншот редактора в<br>
+              <code>presentation/images/lif-editor.png</code>
             </div>
           </div>
-          <div class="pills" style="justify-content: flex-end;">
+          <div class="pills" style="justify-content: flex-end; margin-top: 12px;">
             <span class="pill solid">Own LIF editor</span>
             <span class="pill">No CAD/GIS needed</span>
           </div>
