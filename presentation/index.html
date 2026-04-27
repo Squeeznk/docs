@@ -720,25 +720,122 @@
           </div>
         </div>
         <div class="robot-3d">
-          <svg class="robot-svg" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
+          <svg class="robot-svg" viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg" style="width: 280px;">
             <defs>
-              <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#5ce0b0"/>
+              <!-- Top / light face -->
+              <linearGradient id="ak-top" x1="0" y1="0" x2="1" y2="0.6">
+                <stop offset="0%" stop-color="#a8f0cc"/>
+                <stop offset="100%" stop-color="#5ce0b0"/>
+              </linearGradient>
+              <!-- Front face -->
+              <linearGradient id="ak-front" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3fc99a"/>
                 <stop offset="100%" stop-color="#0D9373"/>
               </linearGradient>
-              <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#9ff0c8"/>
-                <stop offset="100%" stop-color="#07C983"/>
+              <!-- Side face (darker) -->
+              <linearGradient id="ak-side" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0D9373"/>
+                <stop offset="100%" stop-color="#0a6b54"/>
               </linearGradient>
+              <!-- Mast metallic -->
+              <linearGradient id="ak-mast" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#1a3a2c"/>
+                <stop offset="50%" stop-color="#5ce0b0"/>
+                <stop offset="100%" stop-color="#0a6b54"/>
+              </linearGradient>
+              <!-- Forks -->
+              <linearGradient id="ak-fork" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#9ff0c8"/>
+                <stop offset="100%" stop-color="#3fc99a"/>
+              </linearGradient>
+              <!-- Wheel rim -->
+              <radialGradient id="ak-wheel" cx="0.4" cy="0.4" r="0.7">
+                <stop offset="0%" stop-color="#5ce0b0"/>
+                <stop offset="35%" stop-color="#1a3a2c"/>
+                <stop offset="100%" stop-color="#06100c"/>
+              </radialGradient>
+              <!-- Glow under -->
+              <radialGradient id="ak-glow" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%" stop-color="rgba(7,201,131,0.35)"/>
+                <stop offset="100%" stop-color="rgba(7,201,131,0)"/>
+              </radialGradient>
             </defs>
-            <ellipse cx="110" cy="170" rx="80" ry="14" fill="rgba(7,201,131,0.18)"/>
-            <polygon points="40,140 180,140 200,110 20,110" fill="url(#body)" opacity="0.95"/>
-            <polygon points="20,110 200,110 180,80 40,80" fill="url(#top)"/>
-            <polygon points="40,80 180,80 160,55 60,55" fill="#0b1a14" stroke="#5ce0b0" stroke-width="1.2"/>
-            <rect x="80" y="62" width="60" height="12" rx="2" fill="#07C983" opacity="0.8"/>
-            <circle cx="55" cy="148" r="14" fill="#0b1a14" stroke="#5ce0b0" stroke-width="1.5"/>
-            <circle cx="165" cy="148" r="14" fill="#0b1a14" stroke="#5ce0b0" stroke-width="1.5"/>
-            <text x="110" y="195" text-anchor="middle" fill="#90a9a0" font-family="JetBrains Mono" font-size="10" letter-spacing="2">CUSTOM AGV · 3D</text>
+
+            <!-- Floor shadow / glow -->
+            <ellipse cx="160" cy="335" rx="135" ry="16" fill="url(#ak-glow)"/>
+            <ellipse cx="160" cy="335" rx="115" ry="10" fill="rgba(0,0,0,0.45)"/>
+
+            <!-- ============== MAST (vertical) ============== -->
+            <!-- Back vertical column (darker side face) -->
+            <polygon points="170,28 196,42 196,250 170,236" fill="url(#ak-side)" stroke="#5ce0b0" stroke-width="0.8" stroke-opacity="0.5"/>
+            <!-- Front vertical column (brighter) -->
+            <polygon points="142,42 170,28 170,236 142,250" fill="url(#ak-front)" stroke="#5ce0b0" stroke-width="0.8" stroke-opacity="0.5"/>
+            <!-- Mast top cap -->
+            <polygon points="142,42 170,28 196,42 168,56" fill="url(#ak-top)" stroke="#5ce0b0" stroke-width="0.8" stroke-opacity="0.6"/>
+
+            <!-- Inner rail highlight -->
+            <line x1="156" y1="49" x2="156" y2="245" stroke="#9ff0c8" stroke-width="1" stroke-opacity="0.55"/>
+            <line x1="183" y1="49" x2="183" y2="246" stroke="#0a6b54" stroke-width="1" stroke-opacity="0.7"/>
+
+            <!-- Carriage block on the mast -->
+            <polygon points="138,118 168,103 196,117 196,148 168,162 138,148" fill="url(#ak-front)" stroke="#5ce0b0" stroke-width="0.9" stroke-opacity="0.7"/>
+            <polygon points="138,118 168,103 196,117 168,131" fill="url(#ak-top)"/>
+            <rect x="148" y="125" width="12" height="6" rx="1" fill="#07C983" opacity="0.85"/>
+            <rect x="172" y="125" width="12" height="6" rx="1" fill="#07C983" opacity="0.55"/>
+
+            <!-- ============== FORKS (extending forward) ============== -->
+            <!-- Left fork -->
+            <polygon points="34,170 138,118 138,128 34,180" fill="url(#ak-fork)" stroke="#5ce0b0" stroke-width="0.7"/>
+            <polygon points="34,180 138,128 138,132 34,184" fill="#0a6b54"/>
+            <!-- Right fork -->
+            <polygon points="66,186 138,148 138,158 66,196" fill="url(#ak-fork)" stroke="#5ce0b0" stroke-width="0.7" opacity="0.92"/>
+            <polygon points="66,196 138,158 138,162 66,200" fill="#0a6b54"/>
+
+            <!-- ============== MAIN BODY (chassis) ============== -->
+            <!-- Top of body -->
+            <polygon points="60,232 170,180 280,232 170,284" fill="url(#ak-top)" stroke="#5ce0b0" stroke-width="0.9" stroke-opacity="0.8"/>
+            <!-- Front of body -->
+            <polygon points="60,232 170,284 170,310 60,258" fill="url(#ak-front)" stroke="#5ce0b0" stroke-width="0.9" stroke-opacity="0.7"/>
+            <!-- Right side of body -->
+            <polygon points="170,284 280,232 280,258 170,310" fill="url(#ak-side)" stroke="#5ce0b0" stroke-width="0.9" stroke-opacity="0.5"/>
+
+            <!-- Top body details: vents / sensors / status LED bar -->
+            <rect x="118" y="220" width="80" height="6" rx="2" fill="#0b1a14" opacity="0.55" transform="rotate(-26,158,223)"/>
+            <circle cx="170" cy="206" r="4" fill="#07C983">
+              <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="186" cy="214" r="3" fill="#5ce0b0" opacity="0.7"/>
+            <circle cx="154" cy="214" r="3" fill="#5ce0b0" opacity="0.7"/>
+
+            <!-- Front panel: control/HMI -->
+            <rect x="80" y="252" width="44" height="24" rx="2" fill="#06100c" stroke="#07C983" stroke-width="0.8" opacity="0.85" transform="skewY(-13.5)"/>
+            <rect x="86" y="258" width="32" height="3" fill="#07C983" opacity="0.9" transform="skewY(-13.5)"/>
+            <rect x="86" y="263" width="20" height="2" fill="#5ce0b0" opacity="0.75" transform="skewY(-13.5)"/>
+            <rect x="86" y="267" width="26" height="2" fill="#5ce0b0" opacity="0.55" transform="skewY(-13.5)"/>
+
+            <!-- Side panel grooves -->
+            <line x1="190" y1="276" x2="270" y2="238" stroke="#0a6b54" stroke-width="1" opacity="0.85"/>
+            <line x1="190" y1="284" x2="270" y2="246" stroke="#0a6b54" stroke-width="1" opacity="0.65"/>
+
+            <!-- Bumper / safety LIDAR housings -->
+            <ellipse cx="60" cy="245" rx="6" ry="4" fill="#06100c" stroke="#07C983" stroke-width="0.8"/>
+            <ellipse cx="280" cy="245" rx="6" ry="4" fill="#06100c" stroke="#07C983" stroke-width="0.8"/>
+
+            <!-- ============== WHEELS ============== -->
+            <!-- Front-left -->
+            <ellipse cx="92" cy="305" rx="16" ry="10" fill="url(#ak-wheel)" stroke="#5ce0b0" stroke-width="1"/>
+            <ellipse cx="92" cy="304" rx="6" ry="3.5" fill="#0b1a14" stroke="#5ce0b0" stroke-width="0.7"/>
+            <!-- Front-right (visible side) -->
+            <ellipse cx="248" cy="305" rx="16" ry="10" fill="url(#ak-wheel)" stroke="#5ce0b0" stroke-width="1"/>
+            <ellipse cx="248" cy="304" rx="6" ry="3.5" fill="#0b1a14" stroke="#5ce0b0" stroke-width="0.7"/>
+            <!-- Rear support wheel -->
+            <ellipse cx="170" cy="318" rx="11" ry="6" fill="url(#ak-wheel)" stroke="#5ce0b0" stroke-width="0.9"/>
+
+            <!-- Decals / model label on body -->
+            <text x="218" y="265" fill="#06100c" font-family="JetBrains Mono" font-size="9" font-weight="700" letter-spacing="2" transform="rotate(-26,218,265)">AK-2000</text>
+
+            <!-- Caption -->
+            <text x="160" y="356" text-anchor="middle" fill="#90a9a0" font-family="JetBrains Mono" font-size="9" letter-spacing="3">CUSTOM AGV · OBJ / MTL · 3D</text>
           </svg>
         </div>
       </div>
